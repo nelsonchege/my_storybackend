@@ -143,7 +143,7 @@ def get_user_profile(current_user,id):
 #updating profile
 @app.route('/updateprofile',methods=['PUT'])
 def update_user_profile():
-    return ''
+    return 'testing heroku servers'
 
 # login in and geting a token
 @app.route('/login' ,methods=['POST'])
