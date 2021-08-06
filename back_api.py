@@ -72,12 +72,19 @@ def create_user():
 
 #creating a new profile
 @app.route('/createprofile',methods=['POST'])
-@token_required
-def create_user_profile(current_user):
-    data = request.get_json()
-    new_user = UserProfile(username=data['username'],gender=data['gender'],
-    birthday=data['birthday'],phone_number=data['phone_number'],email=data['email'],
-    first_name=data['first_name'],second_name=data['second_name'])
+# @token_required current_user
+def create_user_profile():
+    # data = request.get_json()
+    username = request.json['username']
+    phone_number = request.json['phone_number']
+    birthday = request.json['birthday']
+    first_name = request.json['first_name']
+    second_name = request.json['second_name']
+    email = request.json['email']
+    gender = request.json['radio']
+    new_user = UserProfile(username=username,gender=gender,
+    birthday=birthday,phone_number=phone_number,email=email,
+    first_name=first_name,second_name=second_name)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message' : 'New profile created!'})
